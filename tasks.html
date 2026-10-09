@@ -1,83 +1,48 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Game Daily Hub，讓每一天的遊戲任務都井然有序。每日進度、遊戲清單與活動提醒的靜態設計示範。">
+  <meta name="description" content="デイリーミッション、ログイン、自分で追加したタスクをゲームごとに管理。">
   <meta name="theme-color" content="#1c2036">
-  <title>每日任務 · Game Daily Hub</title>
+  <title>タスク一覧 · Game Daily Hub</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <script src="store.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">跳到主要內容</a>
+<body data-page="tasks">
+  <a class="skip-link" href="#main">メインコンテンツへ移動</a>
   <div class="app-shell">
-    <aside class="sidebar" aria-label="主要導覽">
-      <a class="brand" href="index.html" aria-label="Game Daily Hub 首頁">
+    <aside class="sidebar" aria-label="メインナビゲーション">
+      <a class="brand" href="index.html" aria-label="Game Daily Hub ホーム">
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 9h14c3 0 5 13 3 15-2 2-5-3-7-3h-6c-2 0-5 5-7 3S6 9 9 9Z" stroke="currentColor" stroke-width="2"/><path d="M12 12v6m-3-3h6" stroke="currentColor" stroke-width="2"/><circle cx="21" cy="14" r="1.5" fill="currentColor"/><circle cx="24" cy="17" r="1.5" fill="currentColor"/></svg></span>
         <span>Game Daily<span class="brand-sub">H U B</span></span>
       </a>
-      <p class="nav-label">你的遊戲日常</p>
-      <nav class="main-nav">
-        <a class="nav-link" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>今日總覽</span></a>
-        <a class="nav-link" href="games.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12c3 0 5 11 3 12s-5-3-6-3H9c-1 0-4 4-6 3S3 7 6 7Z"/><path d="M7 10v5m-2.5-2.5h5m6-1h.01m3 2h.01"/></svg><span>我的遊戲</span><span class="nav-count">4</span></a>
-        <a class="nav-link active" aria-current="page" href="tasks.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 2 2 4-4m3 2h9M3 13l2 2 4-4m3 2h9M3 20l2 2 4-4m3 2h9"/></svg><span>任務清單</span><span class="nav-count">7</span></a>
-        <a class="nav-link" href="news.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/></svg><span>活動與公告</span></a>
+      <p class="nav-label">毎日のゲーム習慣</p>
+      <nav class="main-nav" aria-label="ページ">
+        <a class="nav-link" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>今日のまとめ</span></a>
+        <a class="nav-link" href="games.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12c3 0 5 11 3 12s-5-3-6-3H9c-1 0-4 4-6 3S3 7 6 7Z"/><path d="M7 10v5m-2.5-2.5h5m6-1h.01m3 2h.01"/></svg><span>マイゲーム</span><span class="nav-count" data-game-count>0</span></a>
+        <a class="nav-link active" aria-current="page" href="tasks.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 2 2 4-4m3 2h9M3 13l2 2 4-4m3 2h9M3 20l2 2 4-4m3 2h9"/></svg><span>タスク一覧</span><span class="nav-count" data-pending-count>0</span></a>
       </nav>
       <div class="sidebar-bottom">
-        <div class="sidebar-message"><span class="sparkle" aria-hidden="true">✦</span><strong>遊戲是生活的獎勵</strong><p>按自己的節奏玩，<br>也別忘了好好休息。</p><span class="message-line"></span></div>
-        <div class="sidebar-status"><span></span> 好好玩，也好好生活</div>
+        <div class="sidebar-message"><span class="sparkle" aria-hidden="true">✦</span><strong>自分のペースで楽しもう</strong><p>お気に入りの世界へ。<br>ひと休みも忘れずに。</p><span class="message-line" aria-hidden="true"></span></div>
+        <div class="sidebar-status"><span aria-hidden="true"></span> 今日も、楽しいひとときを</div>
       </div>
     </aside>
-
     <main class="main-content" id="main">
-      <header class="page-top"><p class="breadcrumb">我的空間 <span>/</span> <strong>每日任務</strong></p><div class="profile"><span class="demo-label">設計預覽</span><span class="avatar" aria-label="玩家示範頭像">P</span></div></header>
-      <section class="page-header">
-        <div><p class="eyebrow">ONE QUEST AT A TIME</p><h1>每日任務<span class="heading-dot" aria-hidden="true">.</span></h1><p>一項一項打勾，讓今天的冒險圓滿收工。</p></div>
-        <a class="button button-secondary" href="index.html">返回今日總覽 <span aria-hidden="true">↗</span></a>
+      <header class="page-top"><p class="breadcrumb">ホーム <span>/</span> <strong>タスク一覧</strong></p><div class="profile"><span id="current-date">今日</span><span class="avatar" aria-hidden="true">P</span></div></header>
+      <div id="app-message" class="app-message" role="status" aria-live="polite"></div>
+      <div id="storage-error" class="storage-error" role="alert" hidden></div>
+      <noscript><p class="notice">ゲームの追加やタスクの記録には JavaScript が必要です。ブラウザーの設定で有効にしてください。</p></noscript>
+
+      <div class="page-header"><div><p class="eyebrow">毎日のチェックを、ここから</p><h1>タスク一覧<span class="heading-dot" aria-hidden="true">.</span></h1><p class="page-description">終わったらチェック。自分だけのタスクも追加できます。</p></div><a class="button button-light" href="games.html">ゲームを追加 <span aria-hidden="true">＋</span></a></div>
+      <section class="panel task-overview" aria-labelledby="tasks-overview-heading">
+        <div><span class="eyebrow">今日の進み具合</span><h2 id="tasks-overview-heading">少しずつ、クリアしていこう。</h2><p id="tasks-summary">ゲームを追加すると、ここにタスクが表示されます。</p></div><span class="overview-star" aria-hidden="true">✦</span>
       </section>
-
-      <section class="task-overview panel" aria-labelledby="overview-heading"><div><span class="eyebrow">TODAY’S PROGRESS</span><h2 id="overview-heading">今天已完成 <strong>5</strong> / 12 項任務</h2><p>還有 7 件小事等著你，其中 2 款遊戲尚未登入。</p></div><div class="task-overview-progress"><strong>42<span>%</span></strong><div class="progress-track" role="img" aria-label="示範完成進度約 42%"><span style="width: 41.67%"></span></div></div></section>
-      <p class="preview-note">可以試著勾選下方任務。此版為 HTML / CSS 外觀預覽，勾選不會儲存，也不會更新統計、同步其他頁面或每日重置。</p>
-
-      <nav class="task-jump-links" aria-label="前往遊戲任務"><a href="#genshin">原神 <span>0/3</span></a><a href="#starrail">星穹鐵道 <span>3/3</span></a><a href="#zzz">絕區零 <span>2/3</span></a><a href="#wuwa">鳴潮 <span>0/3</span></a></nav>
-
-      <div class="task-page-grid">
-        <section class="task-panel panel" id="genshin" aria-labelledby="genshin-heading">
-          <div class="panel-heading"><div class="game-name"><span class="game-icon icon-genshin" aria-hidden="true">原</span><div><h2 id="genshin-heading">原神</h2><p>今天還沒踏上提瓦特</p></div></div><span class="badge badge-warning">0 / 3 完成</span></div>
-          <div class="task-list">
-            <label class="task-row"><input type="checkbox" name="genshin-login"><span class="task-content"><strong>登入遊戲</strong><small>打開遊戲，開始今天的冒險</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="genshin-daily"><span class="task-content"><strong>完成每日委託</strong><small>完成每日任務並領取獎勵</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="genshin-resin"><span class="task-content"><strong>使用樹脂、領取資源</strong><small>把今天的體力安排好</small></span><span class="task-tag">每日</span></label>
-          </div><div class="task-panel-footer"><span>示範任務清單</span><a href="games.html">查看遊戲 <span aria-hidden="true">↗</span></a></div>
-        </section>
-        <section class="task-panel panel" id="starrail" aria-labelledby="starrail-heading">
-          <div class="panel-heading"><div class="game-name"><span class="game-icon icon-starrail" aria-hidden="true">星</span><div><h2 id="starrail-heading">崩壞：星穹鐵道</h2><p>今天的開拓旅程已完成</p></div></div><span class="badge badge-success">3 / 3 完成</span></div>
-          <div class="task-list">
-            <label class="task-row"><input type="checkbox" name="starrail-login" checked><span class="task-content"><strong>登入遊戲</strong><small>回到星穹列車，向夥伴打個招呼</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="starrail-daily" checked><span class="task-content"><strong>完成每日實訓</strong><small>累積活躍度並領取每日獎勵</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="starrail-power" checked><span class="task-content"><strong>使用開拓力、領取資源</strong><small>補齊角色養成所需的素材</small></span><span class="task-tag">每日</span></label>
-          </div><div class="task-panel-footer"><span>示範任務清單</span><a href="games.html">查看遊戲 <span aria-hidden="true">↗</span></a></div>
-        </section>
-        <section class="task-panel panel" id="zzz" aria-labelledby="zzz-heading">
-          <div class="panel-heading"><div class="game-name"><span class="game-icon icon-zzz" aria-hidden="true">絕</span><div><h2 id="zzz-heading">絕區零</h2><p>再一項，就可以收工啦</p></div></div><span class="badge">2 / 3 完成</span></div>
-          <div class="task-list">
-            <label class="task-row"><input type="checkbox" name="zzz-login" checked><span class="task-content"><strong>登入遊戲</strong><small>回到錄影帶店，開啟今天的委託</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="zzz-daily" checked><span class="task-content"><strong>完成每日活躍任務</strong><small>完成日常並領取活躍獎勵</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="zzz-battery"><span class="task-content"><strong>使用電量、領取資源</strong><small>安排訓練，準備下一次空洞探索</small></span><span class="task-tag">每日</span></label>
-          </div><div class="task-panel-footer"><span>示範任務清單</span><a href="games.html">查看遊戲 <span aria-hidden="true">↗</span></a></div>
-        </section>
-        <section class="task-panel panel" id="wuwa" aria-labelledby="wuwa-heading">
-          <div class="panel-heading"><div class="game-name"><span class="game-icon icon-wuwa" aria-hidden="true">鳴</span><div><h2 id="wuwa-heading">鳴潮</h2><p>今天的旅程，等你出發</p></div></div><span class="badge badge-warning">0 / 3 完成</span></div>
-          <div class="task-list">
-            <label class="task-row"><input type="checkbox" name="wuwa-login"><span class="task-content"><strong>登入遊戲</strong><small>回到索拉里斯，開始今天的探索</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="wuwa-daily"><span class="task-content"><strong>完成每日活躍任務</strong><small>完成日常並領取活躍獎勵</small></span><span class="task-tag">每日</span></label>
-            <label class="task-row"><input type="checkbox" name="wuwa-waveplates"><span class="task-content"><strong>使用結晶波片、領取資源</strong><small>收集共鳴者養成素材</small></span><span class="task-tag">每日</span></label>
-          </div><div class="task-panel-footer"><span>示範任務清單</span><a href="games.html">查看遊戲 <span aria-hidden="true">↗</span></a></div>
-        </section>
-      </div>
-
-      <footer class="site-footer"><p><span aria-hidden="true">✦</span> 留一點時間，給喜歡的世界。</p><p>HTML / CSS 外觀示範 · 勾選僅預覽，不儲存或更新進度</p></footer>
+      <nav class="task-jump-links" id="task-jump-links" aria-label="ゲームのタスクへ移動"></nav>
+      <div class="task-page-grid" id="tasks-list"></div>
+      <footer class="site-footer"><p><span aria-hidden="true">✦</span> 好きな世界に、少しの時間を。</p><p>データはこのブラウザーに保存されます。<br>チェックは端末の午前 0 時にリセット。ゲームとタスクは残ります。</p></footer>
     </main>
   </div>
 </body>

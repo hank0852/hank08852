@@ -1,4 +1,4 @@
-/* 共用設計：從這裡修改全站配色，不需要安裝任何套件。 */
+/* 共通の色とレイアウト。追加パッケージは不要です。 */
 :root {
   --bg: #f6f7fb;
   --surface: #fff;
@@ -14,7 +14,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-body { margin: 0; color: var(--text); background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { margin: 0; color: var(--text); background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 img, svg { display: block; max-width: 100%; }
@@ -181,20 +181,12 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
 .task-game { margin-left: auto; font-size: 10px; color: var(--muted); }
 .all-tasks-link { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 10px -19px -19px; padding: 13px; font-size: 10px; color: #9282b5; border-top: 1px solid var(--line); }
 .all-tasks-link:hover { background: #f9f7ff; }
-.event-preview { position: relative; overflow: hidden; padding: 19px; border: 1px solid #e6e1f3; border-radius: 13px; background: linear-gradient(110deg, #eeebf6, #f8f5fc); }
-.event-preview-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
-.event-preview-top .eyebrow { font-size: 7px; letter-spacing: 1px; }
-.event-preview-top .badge { font-size: 8px; }
-.event-preview h2 { position: relative; font-size: 15px; color: #6c5e89; margin-top: 16px; }
-.event-preview p { position: relative; font-size: 10px; color: #a093b0; margin-top: 5px; }
-.event-preview > a { position: relative; display: inline-block; margin-top: 16px; font-size: 10px; color: #827397; }
-.event-preview > a:hover { text-decoration: underline; }
-.event-decoration { position: absolute; right: 8px; top: 34px; font-size: 110px; color: #cbbede4d; line-height: 1; transform: rotate(12deg); }
+
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 15px; color: #a4a8b7; padding: 29px 0 24px; font-size: 9px; }
 .site-footer p:first-child { color: #9295a6; }
 .site-footer p:first-child span { color: #baa9cd; padding-right: 6px; }
 
-/* 次頁沿用相同卡片、進度列、任務列與導覽。 */
+/* ゲームとタスクのページ */
 .notice, .preview-note, .info-banner { padding: 14px 18px; margin-bottom: 24px; border: 1px solid #e8e3f3; background: #f1eef9; color: #847499; border-radius: 10px; font-size: 12px; }
 .collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .collection-grid .game-cover { height: 170px; }
@@ -203,14 +195,7 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
 .task-panel .task-row { padding: 18px 2px; }
 .task-panel .task-content strong { font-size: 13px; }
 .task-panel .task-content small { font-size: 11px; }
-.news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-.news-card { overflow: hidden; padding: 0; scroll-margin-top: 24px; }
-.event-art { min-height: 130px; padding: 24px; background: #eee9f7; display: flex; align-items: center; justify-content: space-between; }
-.event-art img { width: 100%; height: 150px; object-fit: cover; }
-.event-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 11px; color: #9a8aa7; }
-.event-title { font-size: 20px; margin-top: 12px; }
-.event-description { color: var(--muted); font-size: 13px; margin: 12px 0; line-height: 1.9; }
-.event-date { color: #928ba0; font-size: 11px; }
+
 .button-primary { color: white; background: var(--accent); }
 .button-primary:hover { background: var(--accent-dark); }
 .button-secondary { background: white; border-color: #e5e6ef; }
@@ -253,42 +238,18 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
 .task-panel-footer { display: flex; justify-content: space-between; padding-top: 19px; margin-top: 7px; border-top: 1px solid var(--line); font-size: 10px; color: #aaa5b5; }
 .task-panel-footer a { color: #8a7baf; }
 .task-panel-footer a:hover { text-decoration: underline; }
-.news-notice { display: flex; align-items: center; gap: 13px; margin-bottom: 29px; background: #eeedf7; border-color: #e4e1f0; }
-.notice-icon { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid #a89cba; border-radius: 50%; font-family: Georgia, serif; color: #988aaa; flex-shrink: 0; }
-.news-notice strong { font-size: 12px; color: #7e6f99; }
-.news-notice p { font-size: 11px; color: #9c91ac; margin-top: 3px; }
-.event-art { position: relative; padding: 0; height: 160px; }
-.event-art img { height: 100%; }
-.event-art > .badge { position: absolute; right: 16px; top: 16px; }
-.news-body { padding: 24px; }
-.event-meta { justify-content: space-between; }
-.event-category { font-size: 11px; color: #a18e6d; }
-.event-details { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 17px; }
-.event-details summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font-size: 11px; color: #8975a8; }
-.event-details summary::-webkit-details-marker { display: none; }
-.event-details[open] summary > span { transform: rotate(45deg); }
-.event-details p { font-size: 12px; color: #9891a4; margin-top: 14px; line-height: 1.9; }
-.announcement-panel { margin-top: 26px; padding: 25px; }
-.announcement-panel .panel-heading h2 { font-size: 17px; }
-.announcement-panel .panel-heading p { font-size: 12px; color: var(--muted); margin-top: 5px; }
-.announcement-row { display: flex; align-items: center; gap: 22px; padding: 21px 0; border-top: 1px solid var(--line); }
-.announcement-date { flex-shrink: 0; display: grid; place-items: center; width: 53px; height: 61px; border-radius: 8px; background: #f3f0f9; line-height: 1; color: #9c8cb5; padding: 9px; }
-.announcement-date strong { font-size: 23px; font-weight: 600; }
-.announcement-date > span { font-size: 8px; letter-spacing: 1px; }
-.announcement-row h3 { font-size: 14px; margin-top: 6px; }
-.announcement-row p { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
-/* 輔助文字也保持可讀；完成狀態同時用刪除線表示，不只依靠顏色。 */
+.notice-icon { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid #a89cba; border-radius: 50%; font-family: Georgia, serif; color: #988aaa; flex-shrink: 0; }
+
+/* 完了は色だけでなく、取り消し線でも表示します。 */
 .task-content small, .game-name p, .game-progress, .game-footer,
 .stat-note, .task-panel-footer, .task-tag, .game-heading p,
-.reminder-link small, .event-description, .event-date,
+.reminder-link small,
 .site-footer p, .small-text { color: #6d7388; }
 .task-row input:checked ~ .task-content strong { color: #686d80; }
-.preview-note, .news-notice p, .event-details p { color: #6e647f; }
-.task-panel-footer a, .game-footer a, .all-tasks-link,
-.event-preview > a, .event-details summary { color: #77618d; }
+.preview-note { color: #6e647f; }
+.task-panel-footer a, .game-footer a, .all-tasks-link { color: #77618d; }
 .reminder-box p { color: #89754f; }
-.event-preview p { color: #7c6a91; }
 
 @media (min-width: 1700px) { .main-content { margin-right: auto; } }
 @media (max-width: 1250px) {
@@ -314,7 +275,7 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
   .brand-mark { width: 34px; height: 34px; }
   .dashboard-grid { grid-template-columns: 1fr; }
   .side-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
-  .event-preview { grid-column: 1 / -1; }
+
   .hero-visual { right: 0; width: 42%; transform: scale(.85); transform-origin: center right; }
   .hero-copy { width: 68%; }
   .stats-grid { gap: 10px; }
@@ -368,13 +329,7 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
   .task-jump-links > a { gap: 12px; padding: 8px 11px; font-size: 11px; }
   .task-panel .task-content small { font-size: 10px; }
   .preview-note { font-size: 10px; }
-  .news-body { padding: 21px; }
-  .news-notice { align-items: flex-start; }
-  .news-notice p { font-size: 10px; line-height: 1.9; }
-  .announcement-panel { padding: 19px; }
-  .announcement-row { gap: 13px; }
-  .announcement-row h3 { font-size: 12px; }
-  .announcement-row p { font-size: 11px; }
+
   .sidebar { padding: 16px 13px 10px; }
   .brand { margin-left: 5px; margin-bottom: 17px; }
   .nav-link { gap: 6px; padding: 10px 5px; font-size: 10px; border-radius: 7px; }
@@ -415,9 +370,7 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
   .reminder-box p { font-size: 11px; }
   .reminder-link { font-size: 13px; }
   .reminder-link small { font-size: 10px; }
-  .event-preview h2 { font-size: 17px; }
-  .event-preview p, .event-preview > a { font-size: 12px; }
-  .news-grid { grid-template-columns: 1fr; }
+
 }
 @media (max-width: 360px) {
   .nav-link svg { display: none; }
@@ -426,4 +379,158 @@ a:focus-visible, input:focus-visible, button:focus-visible, summary:focus-visibl
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* 入力フォームと、ユーザーが作るゲーム・タスクの一覧 */
+[hidden] { display: none !important; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled, input:disabled { cursor: not-allowed; opacity: .55; }
+select:focus-visible { outline: 3px solid #ad92ff; outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.main-content, .panel, .game-card, .form-field, .stat-card, .stat-card > div { min-width: 0; }
+.nav-label, .nav-count, .sidebar-message p, .sidebar-message strong, .sidebar-status,
+.breadcrumb, .profile, .eyebrow, .hero-tag, .hero-copy p, .quest-ticket,
+.stat-card p, .stat-note, .stat-link, .text-link, .badge, .game-cover > .badge,
+.game-progress, .game-progress strong, .game-footer, .reminder-link small,
+.small-text, .task-content small, .all-tasks-link, .site-footer,
+.task-tag, .game-name p, .task-panel-footer, .task-jump-links > a > span { font-size: 12px; }
+.brand-sub { font-size: 10px; }
+.nav-label { letter-spacing: 1px; }
+.nav-count { min-width: 24px; }
+.page-header h1 { letter-spacing: 0; }
+.page-description, .page-header > div > p:last-child { font-size: 14px; }
+.page-top { flex-wrap: wrap; gap: 8px 16px; padding: 15px 0; }
+.profile { color: var(--muted); }
+#current-date { white-space: nowrap; }
+.button { gap: 9px; min-height: 44px; font-size: 13px; }
+.button-danger { min-height: 36px; padding: 7px 10px; border-color: #ecdde1; background: #fff; color: #9b4860; font-size: 12px; }
+.button-danger:hover { background: #fff0f3; border-color: #dcafbc; }
+.game-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 18px; margin-top: 17px; border-top: 1px solid var(--line); }
+.game-name > div { min-width: 0; }
+.game-name h2, .game-name h3 { overflow-wrap: anywhere; font-size: 18px; }
+.collection-grid .game-heading h3 { font-size: 18px; }
+.game-progress, .collection-grid .game-progress, .collection-grid .game-footer { font-size: 13px; }
+.game-progress strong { font-size: 14px; }
+.add-game-panel { padding: 25px; margin-bottom: 32px; border-top: 3px solid #c5b8ee; }
+.form-stack { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: flex; align-items: flex-end; gap: 14px; }
+.form-field { flex: 1; }
+.field-label { display: block; color: #50556e; font-size: 13px; font-weight: 650; margin-bottom: 8px; }
+.text-input, .select-input { display: block; width: 100%; min-width: 0; min-height: 46px; padding: 11px 13px; border: 1px solid #dce0ea; border-radius: 8px; background: #fcfcff; color: var(--text); }
+.text-input::placeholder { color: #7d8497; opacity: 1; }
+.text-input:hover, .select-input:hover { border-color: #b3a3d6; }
+.theme-field { flex: 0 1 170px; }
+.form-row > button { min-height: 46px; flex-shrink: 0; }
+.inline-note { font-size: 12px; line-height: 1.9; color: var(--muted); overflow-wrap: anywhere; }
+.task-item { display: flex; gap: 12px; align-items: center; border-bottom: 1px solid #eceef5; min-width: 0; }
+.task-item:last-child { border-bottom: 0; }
+.task-item .task-row { min-width: 0; flex: 1; border: 0; padding: 17px 0; min-height: 58px; }
+.task-item .task-row input { width: 21px; height: 21px; }
+.task-item .task-row input::before { width: 9px; height: 5px; }
+.task-content strong { font-size: 14px; overflow-wrap: anywhere; }
+.task-content small, .task-panel .task-content small { font-size: 12px; overflow-wrap: anywhere; }
+.task-item .button-danger { flex-shrink: 0; }
+.task-tag { flex-shrink: 0; margin-left: 0; }
+.custom-task-form { display: flex; align-items: flex-end; gap: 10px; padding-top: 21px; margin-top: 6px; border-top: 1px solid var(--line); }
+.custom-task-form .text-input { font-size: 14px; }
+.custom-task-form .button { flex-shrink: 0; min-height: 46px; }
+.empty-state { grid-column: 1 / -1; width: 100%; text-align: center; background: #fbfaff; border: 1px dashed #d8d1e9; border-radius: 12px; padding: 34px 24px; overflow-wrap: anywhere; }
+.empty-state-mark { display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 15px; background: #f0eaf9; color: #9f85bf; font-size: 26px; margin-bottom: 14px; }
+.empty-state h3 { font-size: 17px; font-weight: 650; }
+.empty-state p { max-width: 450px; margin: 9px auto 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.empty-state .button { margin-top: 21px; }
+.quick-tasks .empty-state { margin: 15px 0 18px; }
+.panel-heading { flex-wrap: wrap; }
+.panel-heading h2 { font-size: 16px; }
+.panel-heading .game-name { flex: 1; }
+.panel-heading .badge { flex-shrink: 0; }
+.task-page-grid { align-items: start; }
+.task-overview { margin-bottom: 22px; gap: 22px; }
+.task-overview p { font-size: 13px; color: #686080; }
+.overview-star { font-size: 65px; line-height: 1; color: #b5a6d3; padding-right: 15px; }
+.task-jump-links > a { max-width: 100%; min-height: 42px; overflow-wrap: anywhere; }
+.task-jump-links > a > span { flex-shrink: 0; }
+.task-jump-links:empty { margin-bottom: 0; }
+.reminder-link { padding: 10px 0; margin-top: 0; font-size: 14px; min-height: 60px; }
+.reminder-link + .reminder-link { border-top: 1px solid var(--line); }
+.reminder-link > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+.reminder-link .small-game-icon { width: 34px; height: 34px; }
+.summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat-value > strong { font-weight: 700; }
+.stat-note { display: block; }
+.hero-copy { width: 65%; }
+.hero-copy p { max-width: 420px; min-height: 46px; }
+.quest-ticket { min-width: 240px; letter-spacing: 0; }
+.quest-ticket strong { font-size: 13px; letter-spacing: 0; }
+.hero-tag { letter-spacing: 1px; }
+.dashboard-grid { grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); }
+.app-message:not(:empty), .storage-error { margin-top: 18px; padding: 13px 17px; border-radius: 9px; font-size: 13px; overflow-wrap: anywhere; }
+.app-message:not(:empty) { background: #e9f5ee; border: 1px solid #cce5d6; color: #2a6750; }
+.storage-error { background: #fff0f2; border: 1px solid #eec5cf; color: #933750; }
+.site-footer { align-items: flex-start; line-height: 1.8; }
+.site-footer p:last-child { text-align: right; }
+
+@media (max-width: 1080px) {
+  .form-row { flex-wrap: wrap; }
+  .form-row > .form-field:first-child { flex-basis: 100%; }
+  .theme-field { flex: 1; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .hero-copy { width: 70%; }
+  .stat-note { font-size: 12px; }
+}
+@media (max-width: 760px) {
+  .nav-link { font-size: 12px; }
+  .page-header > .button { font-size: 13px; padding: 10px 14px; }
+  .hero-copy { width: 75%; }
+  .stat-card { display: block; }
+  .stat-icon { margin-bottom: 12px; }
+  .stat-note, .stat-link { font-size: 12px; }
+  .collection-grid { grid-template-columns: 1fr; }
+  .site-footer { align-items: center; }
+  .site-footer p:last-child { text-align: center; }
+}
+@media (max-width: 540px) {
+  .main-content { padding: 0 16px; }
+  .nav-link { font-size: 12px; gap: 5px; }
+  .nav-link svg { display: none; }
+  .page-top { padding: 13px 0; }
+  .breadcrumb { font-size: 12px; }
+  .breadcrumb span { padding: 0 6px; }
+  .profile { gap: 9px; }
+  .avatar { display: none; }
+  .page-header { padding: 24px 0; }
+  .page-header h1 { font-size: 25px; }
+  .page-header > div > p:last-child { font-size: 13px; }
+  .hero { min-height: 296px; }
+  .hero-copy { width: 100%; padding: 25px 22px; }
+  .hero-copy p { font-size: 13px; max-width: 100%; }
+  .hero h2 { font-size: 27px; }
+  .hero-visual { opacity: .23; }
+  .summary-grid { grid-template-columns: 1fr; gap: 10px; }
+  .stat-card { display: flex; padding: 17px; gap: 14px; }
+  .stat-icon { display: grid; margin-bottom: 0; width: 37px; height: 37px; }
+  .stat-card p, .stat-note { font-size: 12px; }
+  .stat-value { font-size: 27px; }
+  .stat-value > span { font-size: 14px; }
+  .panel-heading h2 { font-size: 15px; }
+  .panel, .add-game-panel, .task-page-grid .task-panel { padding: 19px; }
+  .form-row { gap: 15px; }
+  .theme-field { flex-basis: 100%; }
+  .form-row > button { width: 100%; }
+  .text-input, .select-input, .custom-task-form .text-input { font-size: 16px; }
+  .task-content strong, .task-panel .task-content strong { font-size: 14px; }
+  .task-content small, .task-panel .task-content small { font-size: 12px; }
+  .task-item { gap: 8px; }
+  .task-item .task-row { gap: 9px; }
+  .task-tag { padding: 3px 5px; }
+  .custom-task-form { gap: 8px; }
+  .custom-task-form .button { padding: 11px 13px; }
+  .overview-star { display: none; }
+  .task-overview h2 { font-size: 18px; }
+  .task-overview p, .task-jump-links > a { font-size: 13px; }
+  .empty-state { padding: 27px 18px; }
+  .empty-state h3 { font-size: 16px; }
+  .reminder-link small { font-size: 12px; }
+  .small-text { font-size: 12px; }
 }
